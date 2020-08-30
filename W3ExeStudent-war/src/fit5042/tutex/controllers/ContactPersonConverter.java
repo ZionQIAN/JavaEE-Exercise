@@ -55,7 +55,7 @@ public class ContactPersonConverter implements Converter {
                 int number = Integer.parseInt(submittedValue);
 
                 for (ContactPerson c : contactPersonDB) {
-                    if (c.getConactPersonId() == number) {
+                    if (c.getContactPersonId() == number) {
                         return c;
                     }
                 }
