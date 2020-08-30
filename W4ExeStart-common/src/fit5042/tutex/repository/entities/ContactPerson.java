@@ -3,9 +3,6 @@ package fit5042.tutex.repository.entities;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
-
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Named;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,32 +12,39 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.glassfish.jersey.spi.Contract;
+
 /**
  *
  * @author Eddie
  */
-@RequestScoped
-@Named(value = "contactperson")
+@Entity
+@Table(name = "CONTACT_PERSON")
+@NamedQueries({
+    @NamedQuery(name = ContactPerson.GET_ALL_QUERY_NAME, query = "SELECT c FROM ContactPerson c")})
 public class ContactPerson implements Serializable {
-    
+
     public static final String GET_ALL_QUERY_NAME = "ContactPerson.getAll";
-    
+
     private int contactPersonId;
     private String name;
     private String phoneNumber;
-    
+
     private Set<Property> properties;
 
     public ContactPerson() {
     }
 
-    public ContactPerson(int contactPersonId, String name, String phoneNumber) {
-        this.contactPersonId = contactPersonId;
+    public ContactPerson(int conactPersonId, String name, String phoneNumber) {
+        this.contactPersonId = conactPersonId;
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.properties = new HashSet<>();
     }
 
+    @Id
+    @GeneratedValue
+    @Column(name = "contact_person_id")
     public int getContactPersonId() {
         return contactPersonId;
     }
@@ -57,6 +61,7 @@ public class ContactPerson implements Serializable {
         this.name = name;
     }
 
+    @Column(name = "phone_number")
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -65,6 +70,10 @@ public class ContactPerson implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
+    //enforce the relationship between a property and its contact person using annotation(s). 
+    //Each property has one and only one contact person. 
+    //Each contact person might be responsible for zero to many properties
+    @OneToMany(mappedBy = "contactPerson")
     public Set<Property> getProperties() {
         return properties;
     }
