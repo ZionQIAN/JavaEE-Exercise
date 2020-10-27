@@ -17,6 +17,9 @@ public class PropertyController {
 
     private int propertyId; //this propertyId is the index, don't confuse with the Property Id
 
+    
+    private fit5042.tutex.repository.entities.Property property;
+    
     public int getPropertyId() {
         return propertyId;
     }
@@ -24,7 +27,8 @@ public class PropertyController {
     public void setPropertyId(int propertyId) {
         this.propertyId = propertyId;
     }
-    private fit5042.tutex.repository.entities.Property property;
+    
+    
 
     public PropertyController() {
         // Assign property identifier via GET param 

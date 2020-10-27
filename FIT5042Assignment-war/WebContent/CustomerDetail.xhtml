@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+	<h:head>
+		<h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+        <title>#{titleController.pageTitle}</title>
+    </h:head> 
+<h:body> 
+	<div class="container">
+            <div class="navbar navbar-inverse">
+                <div class="navbar-brand">
+                    #{titleController.pageTitle} - Customer Details
+                </div>
+            </div>
+<h:form id="MyForm">
+                <table class="table table-bordered ">
+                    <tr>
+                        <td width ="150" valign="top">Id:</td>
+
+                        <td valign="bottom">
+                            <h:outputLabel id = "Id" >#{customerController.customer.customerId}</h:outputLabel>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width ="100" valign="top">customerName: </td>
+
+                        <td valign="bottom">
+                            <h:outputLabel id = "CustomerName" >#{customerController.customer.customerName}</h:outputLabel>
+                        </td>
+                    </tr>
+                     <tr>
+                        <td width ="100" valign="top">industry:</td>
+
+                        <td valign="bottom">
+                            <h:outputLabel id = "industry" >#{customerController.customer.industry.industryName}</h:outputLabel>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width ="100" valign="top">CEO: </td>
+
+                        <td valign="bottom">
+                            <h:outputLabel id = "CEO" >#{customerController.customer.CEO}</h:outputLabel>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width ="100" valign="top">Number of employees: </td>
+
+                        <td valign="bottom">
+                            <h:outputLabel id = "NumberOfemployees" >
+                                #{customerController.customer.numberOfemployees}
+                                 
+                            </h:outputLabel>
+
+                        </td>
+                    </tr>
+                
+                   <tr>
+                        <td width ="100" valign="top">website:</td>
+
+                        <td valign="bottom">
+                            <h:outputLabel id = "Website" >#{customerController.customer.website}</h:outputLabel>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width ="100" valign="top">officePhone:</td>
+
+                        <td valign="bottom">
+                            <h:outputLabel id = "OfficePhone" >#{customerController.customer.officePhone}</h:outputLabel>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width ="100" valign="top">address:</td>
+
+                        <td valign="bottom">
+                            <h:outputLabel id = "Address" >#{customerController.customer.address}</h:outputLabel>
+                        </td>
+                    </tr>
+
+                 </table>
+                 <h:link id="close" value="Close" outcome="faces/index.xhtml"
+ 						          class="btn btn-primary" />
+
+            </h:form>
+        </div>
+    </h:body>
+</html>

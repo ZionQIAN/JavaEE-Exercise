@@ -1,0 +1,1 @@
+INSERT INTO CUSTOMER(customer_Id,CEO,address,customername,numberOfemployees,officePhone,website,industry_name)VALUES(1,'Bob','405 Neereim','New Training',16,03651642,'www.goajsj.com','Education');

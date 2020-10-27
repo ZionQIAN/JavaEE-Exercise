@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"> 
+
+<h:head>
+	<h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+        <title>#{titleController.pageTitle}</title>
+</h:head> 
+<h:body> 
+	 <div class="container">
+            <div class="navbar navbar-inverse">
+                <div class="navbar-brand">
+                    #{titleController.pageTitle} - CustomerContact  List
+                </div>
+            </div>
+            
+            <div>
+                 <h:outputLabel id="customerId" value="#{customerController.customerId}"  />
+            </div>
+            
+            <h:form id="MyForm">
+            	<table class="table table-bordered table-striped">
+           			<tr>
+	                    	<td>
+	                            <h:outputLabel id="customerContactId" value="customerContactId"  />
+	                        </td>
+	                        <td>
+	                            <h:outputLabel id="customerContactName" value="customerContactName"  />
+	                        </td>
+					</tr>
+                    <ui:repeat id="Myrepeat" value="#{customerController.customerContacts}"  var="cc" varStatus="status">
+							<tr onclick="document.getElementById('MyForm:principle').value = document.getElementById('MyForm:Myrepeat:#{status.index}:outCustomerContactName').textContent">
+		                    		<td>
+		                    			<h:outputText id="outCustomerContactID" value="#{customerController.customerContacts.get(status.index).customerContactId}" />
+		                    		</td>
+									<td>
+		                    			<h:outputText id="outCustomerContactName" value="#{customerController.customerContacts.get(status.index).name}"  />
+		                    		</td>
+			                		<td>
+		                    			<h:link value="View | " outcome="faces/CustomerContactDetail.xhtml">
+		                    				<f:param name="customerContactID" value="#{status.index}"/>
+		                    				<f:param name="customerID" value="#{customerController.customerId}"/>
+		                    			</h:link>
+										<h:link value="Edit | " outcome="faces/EditCustomerContact.xhtml">
+		                    				<f:param name="customerContactID" value="#{status.index}"/>
+		                    				<f:param name="customerID" value="#{customerController.customerId}"/>
+		                    			</h:link>
+		                    			<h:commandLink value="Delete" action="#{removeCustomerContact.removeCustomerContact(customerController.customerContacts.get(status.index).customerContactId)}" disabled="#{customerController.customerContacts.get(status.index).customerContactId == null}">
+		                    				<f:param name="customerContactID" value="#{status.index}"/>
+		                    				<f:param name="customerID" value="#{customerController.customerId}"/>
+		                    			</h:commandLink>
+		                    			<h:outputText value=" "/>
+		                    		</td>
+	                    	</tr>
+                    </ui:repeat>
+                 </table>
+                    
+                    
+                    
+                    <div>
+                    <h:commandButton id="viewAll" value="View All" action="#{searchCustomerContact.searchAllCustomerContact()}" class="btn btn-primary" >
+                        <f:param name="customerID" value="#{customerController.customerId}"/>
+                    </h:commandButton>
+                </div>
+                <div>
+                    <h:inputText value="#{searchCustomerContact.searchByInt}" id="searchCustomerContactById" required="true" onchange ="if (document.getElementById('MyForm:searchCustomerContactById').value.trim() == '') {document.getElementById('MyForm:searchCustomerContactById').value = 0;} "   />
+                    <h:commandButton id="searchCustomerContactId" value="Search Customer by Id" action="#{searchCustomerContact.searchCustomerContactByInt(searchCustomerContact.searchByInt)}" class="btn btn-primary" >
+                        <f:param name="customerID" value="#{customerController.customerId}"/>
+                    </h:commandButton>
+                </div>
+           		<div>
+           		 	<h:link id="close" value="Close" outcome="faces/index.xhtml" class="btn btn-primary" >
+				
+					</h:link>
+           		</div>
+
+
+            </h:form>
+        </div>
+</h:body> 
+</html>
