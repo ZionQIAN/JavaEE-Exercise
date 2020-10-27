@@ -41,6 +41,8 @@ public class JPAPropertyRepositoryImpl implements PropertyRepository {
 
     @Override
     public List<Property> getAllProperties() throws Exception {
+    	
+    	
         return entityManager.createNamedQuery(Property.GET_ALL_QUERY_NAME).getResultList();
     }
 

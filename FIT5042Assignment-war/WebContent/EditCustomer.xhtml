@@ -1,0 +1,152 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+        <title>#{titleController.pageTitle}</title>
+    </h:head>
+    <h:body>
+
+		<div class="container">
+            <div class="navbar navbar-inverse">
+                <div class="navbar-brand">
+                    #{titleController.pageTitle} - Customer Details
+                </div>
+            </div>
+            
+			<h:form id="MyForm">
+	
+                <table class="table table-bordered ">
+
+                    <tr>
+                        <td width ="150" valign="top">Id:</td>
+                        <td valign="bottom">
+                            <h:outputLabel id = "Id" >#{customerController.customer.customerId}</h:outputLabel>
+                        </td>
+                    </tr>
+                    <tr class="#{!customerName.valid ? 'has-error' : 'none'}">
+                        <td width ="100" valign="top">Customer Name: </td>
+
+                        <td valign="bottom">
+                        <h:outputLabel for="CustomerName" />
+                            <h:inputText id = "customerName" value="#{customerController.customer.customerName}"  required="true"
+                                         
+                                                 pt:placeholder="#{customerController.customer.customerName}">
+                                        	
+                            </h:inputText>
+                            <br/>
+                                         <h:message for="CustomerName"
+                                         	class="#{!customerName.valid ? 'label label-warning' : 'none'}"/>
+                        </td>
+                    </tr>
+                    <tr class="#{!industryName.valid ? 'has-error' : 'none'}">
+                        <td width ="100" valign="top">
+                        	Industry Name: 
+                        </td>
+						<td valign="bottom">
+						<h:outputLabel for="IndustryName" />
+                            <h:inputText id ="IndustryName" value="#{customerController.customer.industry.industryName}" binding="#{industryName}" required="true"
+                                       
+                                         pt:placeholder="#{customerController.customer.industry.industryName}">
+                                        
+                            </h:inputText>
+                                         <br/>
+                                         <h:message for="IndustryName"
+                                         	class="#{!industryName.valid ? 'label label-warning' : 'none'}"/>
+                        </td>
+                    </tr>
+                    
+                    
+                    
+                    <tr class="#{!CEO.valid ? 'has-error' : 'none'}">
+                        <td width ="100" valign="top">CEO: </td>
+
+                        <td valign="bottom">
+                        <h:outputLabel for="CEO" />
+                            <h:inputText id = "CEO" value="#{customerController.customer.CEO}"  required="true"
+                                         
+                                                 pt:placeholder="#{customerController.customer.CEO}">
+                                                 
+                                                 </h:inputText>
+                                                 <br/>
+                                         <h:message for="CEO"
+                                         	class="#{!CEO.valid ? 'label label-warning' : 'none'}"/>
+                        </td>
+                    </tr>
+                     <tr class="#{!numberOfemployees.valid ? 'has-error' : 'none'}">
+                        <td width ="100" valign="top">Number of employees: </td>
+                        <td valign="bottom">
+                        <h:outputLabel for="NumberOfemployees" />
+                            <h:inputText id = "NumberOfemployees" value="#{customerController.customer.numberOfemployees}"  required="true"
+                                         
+                                                 pt:placeholder="#{customerController.customer.numberOfemployees}">
+                                 
+                            </h:inputText>
+                            <br/>
+                                         <h:message for="NumberOfemployees"
+                                         	class="#{!numberOfemployees.valid ? 'label label-warning' : 'none'}"/>
+
+                        </td>
+                    </tr>
+                    
+                    <tr class="#{!website.valid ? 'has-error' : 'none'}">
+                        <td width ="100" valign="top">Website: </td>
+                        <td valign="bottom">
+                        <h:outputLabel for="Website" />
+                            <h:inputText id = "Website" value="#{customerController.customer.website}"  required="true"
+                                         
+                                                 pt:placeholder="#{customerController.customer.website}">
+                                 
+                            </h:inputText>
+                            <br/>
+                                         <h:message for="Website"
+                                         	class="#{!website.valid ? 'label label-warning' : 'none'}"/>
+
+                        </td>
+                    </tr>
+                    <tr class="#{!officePhone.valid ? 'has-error' : 'none'}">
+                        <td width ="100" valign="top">Office Phone: </td>
+                        <td valign="bottom">
+                        <h:outputLabel for="OfficePhone" />
+                            <h:inputText id = "OfficePhone" value="#{customerController.customer.officePhone}"  required="true"
+                                         
+                                                 pt:placeholder="#{customerController.customer.officePhone}">
+                                 
+                            </h:inputText>
+                            <br/>
+                                         <h:message for="OfficePhone"
+                                         	class="#{!officePhone.valid ? 'label label-warning' : 'none'}"/>
+
+                        </td>
+                    </tr>
+                    <tr class="#{!address.valid ? 'has-error' : 'none'}">
+                        <td width ="100" valign="top">Address: </td>
+                        <td valign="bottom">
+                        <h:outputLabel for="Address" />
+                            <h:inputText id = "Address" value="#{customerController.customer.address}"  required="true"
+                                         
+                                                 pt:placeholder="#{customerController.customer.address}">
+                                 
+                            </h:inputText>
+                            <br/>
+                                         <h:message for="Address"
+                                         	class="#{!address.valid ? 'label label-warning' : 'none'}"/>
+
+                        </td>
+                    </tr>
+
+                </table>
+
+                <h:commandButton id="save" value="Save" action="#{customerManagedBean.editCustomer(customerController.customer)}"  class="btn btn-primary" >
+                    <f:param name="customerID" value="#{customerController.customerId}"/>
+                </h:commandButton>
+                <h:link id="close" value="Close" outcome="faces/index.xhtml"
+						          class="btn btn-primary" />
+            </h:form>
+        </div>
+    </h:body>
+</html>

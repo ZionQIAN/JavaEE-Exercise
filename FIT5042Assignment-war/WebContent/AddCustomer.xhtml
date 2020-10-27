@@ -1,0 +1,154 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+        <title>#{titleController.pageTitle}</title>
+    </h:head>
+    <h:body>
+		<div class="container">
+            <div class="navbar navbar-inverse">
+                <div class="navbar-brand">
+                    #{titleController.pageTitle} - Add Customer
+                </div>
+            </div>
+          	<div>
+          	<f:view>
+            <h:form>
+                <h1><h:outputText value="Create"/></h1>
+                <table class="table table-bordered " >
+				  <tr class="#{!customerName.valid ? 'has-error' : 'none'}">
+                        <td width ="100" valign="top">Customer Name: </td>
+
+                        <td valign="bottom">
+                        <h:outputLabel for="CustomerName" />
+                            <h:inputText id = "customerName" value="#{customer.customerName}"  required="true"
+                                         
+                                                 pt:placeholder="new customer name">
+                                        	
+                            </h:inputText>
+                            <br/>
+                                         <h:message for="CustomerName"
+                                         	class="#{!customerName.valid ? 'label label-warning' : 'none'}"/>
+                        </td>
+                    </tr>
+
+                    
+
+                    <tr class="#{!industryName.valid ? 'has-error' : 'none'}">
+                        <td width ="100" valign="top">
+                        	Industry Name: 
+                        </td>
+						<td valign="bottom">
+						<h:outputLabel for="IndustryName" />
+                            <h:inputText id ="IndustryName" value="#{customer.industryName}" binding="#{industryName}" required="true"
+                                       
+                                         pt:placeholder="Education">
+                                        
+                            </h:inputText>
+                                         <br/>
+                                         <h:message for="IndustryName"
+                                         	class="#{!industryName.valid ? 'label label-warning' : 'none'}"/>
+                        </td>
+                    </tr>
+
+                     <tr class="#{!CEO.valid ? 'has-error' : 'none'}">
+                        <td width ="100" valign="top">CEO: </td>
+
+                        <td valign="bottom">
+                        <h:outputLabel for="CEO" />
+                            <h:inputText id = "CEO" value="#{customer.CEO}"  required="true"
+                                         
+                                                 pt:placeholder="Peter">
+                                                 
+                                                 </h:inputText>
+                                                 <br/>
+                                         <h:message for="CEO"
+                                         	class="#{!CEO.valid ? 'label label-warning' : 'none'}"/>
+                        </td>
+                    </tr>
+
+                    <tr class="#{!numberOfemployees.valid ? 'has-error' : 'none'}">
+                        <td width ="100" valign="top">Number of employees: </td>
+                        <td valign="bottom">
+                        <h:outputLabel for="NumberOfemployees" />
+                            <h:inputText id = "NumberOfemployees" value="#{customer.numberOfemployees}"  required="true"
+                                         
+                                                 pt:placeholder="20">
+                                 
+                            </h:inputText>
+                            <br/>
+                                         <h:message for="NumberOfemployees"
+                                         	class="#{!numberOfemployees.valid ? 'label label-warning' : 'none'}"/>
+
+                        </td>
+                    </tr>
+
+                    
+                    <tr class="#{!website.valid ? 'has-error' : 'none'}">
+                        <td width ="100" valign="top">Website: </td>
+                        <td valign="bottom">
+                        <h:outputLabel for="Website" />
+                            <h:inputText id = "Website" value="#{customer.website}"  required="true"
+                                         
+                                                 pt:placeholder="www.123.com">
+                                 
+                            </h:inputText>
+                            <br/>
+                                         <h:message for="Website"
+                                         	class="#{!website.valid ? 'label label-warning' : 'none'}"/>
+
+                        </td>
+                    </tr>
+                    <tr class="#{!officePhone.valid ? 'has-error' : 'none'}">
+                        <td width ="100" valign="top">Office Phone: </td>
+                        <td valign="bottom">
+                        <h:outputLabel for="OfficePhone" />
+                            <h:inputText id = "OfficePhone" value="#{customer.officePhone}"  required="true"
+                                         
+                                                 pt:placeholder="0465585496">
+                                 
+                            </h:inputText>
+                            <br/>
+                                         <h:message for="OfficePhone"
+                                         	class="#{!officePhone.valid ? 'label label-warning' : 'none'}"/>
+
+                        </td>
+                    </tr>
+
+                    <tr class="#{!address.valid ? 'has-error' : 'none'}">
+                        <td width ="100" valign="top">Address: </td>
+                        <td valign="bottom">
+                        <h:outputLabel for="Address" />
+                            <h:inputText id = "Address" value="#{customer.address}"  required="true"
+                                         
+                                                 pt:placeholder="145 222 blackBurn Rd">
+                                 
+                            </h:inputText>
+                            <br/>
+                                         <h:message for="Address"
+                                         	class="#{!address.valid ? 'label label-warning' : 'none'}"/>
+
+                        </td>
+                    </tr>
+
+
+                  
+
+                </table>
+
+                <h:commandButton id="submit" value="Submit" action="#{addCustomer.addCustomer(customer)}" class="btn btn-primary" />
+                <h:link id="close" value="Close" outcome="faces/index.xhtml"
+						          class="btn btn-primary" />
+
+            </h:form>
+
+        </f:view>
+            </div>
+        </div>
+
+    </h:body>
+</html>
