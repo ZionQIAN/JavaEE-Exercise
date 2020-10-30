@@ -27,6 +27,9 @@ public class CustomerContactController {
 	@PostConstruct
 	public void init() 
 	{
+		
+		customerContact = new CustomerContact();
+		
 		customerId = Integer.valueOf(FacesContext.getCurrentInstance()
 				.getExternalContext()
 				.getRequestParameterMap()
@@ -45,6 +48,8 @@ public class CustomerContactController {
 		if(temp != null) 
 		{
 			customerContactId = Integer.valueOf(temp);
+			
+			customerContact = getCustomerContact();
 		}else {
 			customerContactId = 0;
 		}
@@ -85,8 +90,8 @@ public class CustomerContactController {
 
 	public CustomerContact getCustomerContact() 
 	{
-		if(customerContact == null)
-		{
+		//if(customerContact == null)
+		//{
 			ELContext context = FacesContext.getCurrentInstance().getELContext();
 			
 			AusApplication application = (AusApplication)FacesContext.getCurrentInstance()
@@ -97,8 +102,9 @@ public class CustomerContactController {
 			application.searchAllCustomers();
 			application.searchAllCustomerContact();
 			
-			return application.getCustomerContacts().get(customerContactId);
-		}
-		return customerContact;
+			return application.getCustomerContactById(customerContactId);
+			
+		//}
+		
 	}
 }
