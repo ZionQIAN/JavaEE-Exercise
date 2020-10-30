@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
-    <h:head>
+<html 	xmlns="http://www.w3.org/1999/xhtml" 
+		xmlns:f="http://java.sun.com/jsf/core" 
+		xmlns:ui="http://xmlns.jcp.org/jsf/facelets"   
+		xmlns:h="http://xmlns.jcp.org/jsf/html"  
+		xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+	<h:head>
         <h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
         <title>#{titleController.pageTitle}</title>
     </h:head>
@@ -14,7 +14,7 @@
 		<div class="container">
             <div class="navbar navbar-inverse">
                 <div class="navbar-brand">
-                    #{titleController.pageTitle} - Customer Details
+                    #{titleController.pageTitle} - Edit Customer Contact
                 </div>
             </div>
             
@@ -35,7 +35,7 @@
                         <h:outputLabel for="Name" />
                             <h:inputText id = "name" value="#{customerContactController.customerContact.name}"  required="true"
                                          
-                                                 pt:placeholder="#{customerContactController.customerContact.name}">
+                                                 p:placeholder="#{customerContactController.customerContact.name}">
                                         	
                             </h:inputText>
                             <br/>
@@ -51,7 +51,7 @@
 						<h:outputLabel for="Gender" />
                             <h:inputText id ="Gender" value="#{customerContactController.customerContact.gender}" binding="#{gender}" required="true"
                                        
-                                         pt:placeholder="#{customerContactController.customerContact.gender}">
+                                         p:placeholder="#{customerContactController.customerContact.gender}">
                                         
                             </h:inputText>
                                          <br/>
@@ -69,7 +69,7 @@
                         <h:outputLabel for="Age" />
                             <h:inputText id = "Age" value="#{customerContactController.customerContact.age}"  required="true"
                                          
-                                                 pt:placeholder="#{customerContactController.customerContact.age}">
+                                                 p:placeholder="#{customerContactController.customerContact.age}">
                                                  
                                                  </h:inputText>
                                                  <br/>
@@ -83,7 +83,7 @@
                         <h:outputLabel for="WorkPhone" />
                             <h:inputText id = "WorkPhone" value="#{customerContactController.customerContact.workPhone}"  required="true"
                                          
-                                                 pt:placeholder="#{customerContactController.customerContact.workPhone}">
+                                                 p:placeholder="#{customerContactController.customerContact.workPhone}">
                                  
                             </h:inputText>
                             <br/>
@@ -99,7 +99,7 @@
                         <h:outputLabel for="Position" />
                             <h:inputText id = "Position" value="#{customerContactController.customerContact.position}"  required="true"
                                          
-                                                 pt:placeholder="#{customerContactController.customerContact.position}">
+                                                 p:placeholder="#{customerContactController.customerContact.position}">
                                  
                             </h:inputText>
                             <br/>

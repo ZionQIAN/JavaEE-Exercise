@@ -22,8 +22,9 @@ public class JPACustomerContactRepositoryImpl implements CustomerContactReposito
 	{
 		
 		List<CustomerContact> customerContacts = entityManager.createNamedQuery(CustomerContact.GET_ALL_QUERY_NAME).getResultList();
-		customerContact.setCustomerContactId(customerContacts.get(0).getCustomerContactId() + 1);
+		//customerContact.setCustomerContactId(customerContacts.get(0).getCustomerContactId() + 1);
 		Customer customer = customerContact.getCustomer();
+		customer.getCustomerContacts().add(customerContact);
 		entityManager.merge(customer);
 		entityManager.persist(customerContact);
 		entityManager.flush();

@@ -154,6 +154,21 @@ public class AusApplication {
 		return tempCustomer;
 	}
 	
+	public CustomerContact getCustomerContactById(int customerContactId) 
+	{
+		CustomerContact tempCustomerContact = new CustomerContact();
+		
+		for (CustomerContact tempContact : customerContacts) 
+		{
+			if (tempContact.getCustomerContactId() == customerContactId) 
+			{
+				tempCustomerContact = tempContact;
+			}
+		}
+		
+		return tempCustomerContact;
+	}
+	
 	public void searchAllCustomers() 
 	{
 		customers.clear();

@@ -1,3 +1,5 @@
+
+
 package fit5042.assignment.controllers;
 
 import java.util.ArrayList;
@@ -18,6 +20,7 @@ public class CustomerController {
 		private fit5042.assignment.repositoty.entities.Customer customer;
 		
 		private ArrayList<CustomerContact> customerContacts = new ArrayList<CustomerContact>();
+		
 		
 		public int getCustomerId() {
 			return customerId;
