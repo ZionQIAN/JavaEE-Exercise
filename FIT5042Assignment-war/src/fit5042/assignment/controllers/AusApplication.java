@@ -30,6 +30,8 @@ public class AusApplication {
 	
 	private ArrayList<CustomerContact> customerContacts;
 	
+	///private ArrayList<CustomerContact> oneCustomerContacts;
+	
 	
 	private boolean showForm = true;
 	
@@ -56,6 +58,8 @@ public class AusApplication {
 		updateCustomerList();
 		
 		updateCustomerContactList() ;
+		
+		//updateOneCustomerContactList();
 	}
 	
 	public AusApplication() 
@@ -138,6 +142,15 @@ public class AusApplication {
 			}
 		}
 	}
+	
+//	public void updateOneCustomerContactList() 
+//	{
+//		oneCustomerContacts.clear();
+//		
+//		
+//		
+//		
+//	}
 	
 	public Customer getCustomerById(int customerId) 
 	{
