@@ -68,7 +68,7 @@
                         <td valign="bottom">
                         <h:outputLabel for="CustomerName" />
                             <h:inputText id = "customerName" value="#{customerController.customer.customerName}"  required="true"
-                                         
+                                         		requiredMessage="Please enter the customer name!"
                                                  pt:placeholder="#{customerController.customer.customerName}">
                                         	
                             </h:inputText>
@@ -84,7 +84,7 @@
 						<td valign="bottom">
 						<h:outputLabel for="IndustryName" />
                             <h:inputText id ="IndustryName" value="#{customerController.customer.industry.industryName}" binding="#{industryName}" required="true"
-                                       
+                                       requiredMessage="Please enter the industry name!"
                                          pt:placeholder="#{customerController.customer.industry.industryName}">
                                         
                             </h:inputText>
@@ -102,7 +102,7 @@
                         <td valign="bottom">
                         <h:outputLabel for="CEO" />
                             <h:inputText id = "CEO" value="#{customerController.customer.CEO}"  required="true"
-                                         
+                                         			requiredMessage="Please enter the CEO name!"
                                                  pt:placeholder="#{customerController.customer.CEO}">
                                                  
                                                  </h:inputText>
@@ -116,9 +116,11 @@
                         <td valign="bottom">
                         <h:outputLabel for="NumberOfemployees" />
                             <h:inputText id = "NumberOfemployees" value="#{customerController.customer.numberOfemployees}"  required="true"
-                                         
+                                         		validatorMessage="Please enter a valid number of employee."
+                                         		requiredMessage="Please enter the number of employees!"
                                                  pt:placeholder="#{customerController.customer.numberOfemployees}">
-                                 
+                                 				<f:convertNumber integerOnly="true"/>
+											<f:validateLongRange minimum="1"/>
                             </h:inputText>
                             <br/>
                                          <h:message for="NumberOfemployees"
@@ -147,9 +149,11 @@
                         <td valign="bottom">
                         <h:outputLabel for="OfficePhone" />
                             <h:inputText id = "OfficePhone" value="#{customerController.customer.officePhone}"  required="true"
-                                         
+                                         		validatorMessage="Please enter a valid Phone number."
+												requiredMessage="Please enter an Phone number. "
                                                  pt:placeholder="#{customerController.customer.officePhone}">
-                                 
+                                 				<f:convertNumber integerOnly="true"/>
+											<f:validateLongRange minimum="1"/>
                             </h:inputText>
                             <br/>
                                          <h:message for="OfficePhone"
@@ -162,7 +166,7 @@
                         <td valign="bottom">
                         <h:outputLabel for="Address" />
                             <h:inputText id = "Address" value="#{customerController.customer.address}"  required="true"
-                                         
+                                         		requiredMessage="Please enter the address!"
                                                  pt:placeholder="#{customerController.customer.address}">
                                  
                             </h:inputText>

@@ -63,8 +63,9 @@
 									<td width="100" valign="top">Customer Name:</td>
 
 									<td valign="bottom"><h:outputLabel for="CustomerName" />
-										<h:inputText id="customerName"
+										<h:inputText id="CustomerName"
 											value="#{customer.customerName}" required="true"
+											requiredMessage="Please enter the customer name!"
 											pt:placeholder="new customer name">
 
 										</h:inputText> <br /> <h:message for="CustomerName"
@@ -79,7 +80,9 @@
 									<td valign="bottom"><h:outputLabel for="IndustryName" />
 										<h:inputText id="IndustryName"
 											value="#{customer.industryName}" binding="#{industryName}"
-											required="true" pt:placeholder="Education">
+											required="true" 
+											requiredMessage="Please enter the industry name!"
+											pt:placeholder="Education">
 
 										</h:inputText> <br /> <h:message for="IndustryName"
 											class="#{!industryName.valid ? 'label label-warning' : 'none'}" />
@@ -91,6 +94,7 @@
 
 									<td valign="bottom"><h:outputLabel for="CEO" /> <h:inputText
 											id="CEO" value="#{customer.CEO}" required="true"
+											requiredMessage="Please enter the CEO name!"
 											pt:placeholder="Peter">
 
 										</h:inputText> <br /> <h:message for="CEO"
@@ -102,8 +106,11 @@
 									<td valign="bottom"><h:outputLabel for="NumberOfemployees" />
 										<h:inputText id="NumberOfemployees"
 											value="#{customer.numberOfemployees}" required="true"
+											validatorMessage="Please enter a valid number of employee."
+											requiredMessage="Please enter the number of employees!"
 											pt:placeholder="20">
-
+											<f:convertNumber integerOnly="true"/>
+											<f:validateLongRange minimum="1"/>
 										</h:inputText> <br /> <h:message for="NumberOfemployees"
 											class="#{!numberOfemployees.valid ? 'label label-warning' : 'none'}" />
 
@@ -115,6 +122,7 @@
 									<td width="100" valign="top">Website:</td>
 									<td valign="bottom"><h:outputLabel for="Website" /> <h:inputText
 											id="Website" value="#{customer.website}" required="true"
+											requiredMessage="Please enter the website!"
 											pt:placeholder="www.123.com">
 
 										</h:inputText> <br /> <h:message for="Website"
@@ -126,7 +134,12 @@
 									<td width="100" valign="top">Office Phone:</td>
 									<td valign="bottom"><h:outputLabel for="OfficePhone" /> <h:inputText
 											id="OfficePhone" value="#{customer.officePhone}"
-											required="true" pt:placeholder="0465585496">
+											required="true" 
+											validatorMessage="Please enter a valid Phone number."
+											requiredMessage="Please enter an Phone number. "
+											pt:placeholder="0465585496">
+											<f:convertNumber integerOnly="true"/>
+											<f:validateLongRange minimum="1"/>
 
 										</h:inputText> <br /> <h:message for="OfficePhone"
 											class="#{!officePhone.valid ? 'label label-warning' : 'none'}" />
@@ -138,6 +151,7 @@
 									<td width="100" valign="top">Address:</td>
 									<td valign="bottom"><h:outputLabel for="Address" /> <h:inputText
 											id="Address" value="#{customer.address}" required="true"
+											requiredMessage="Please enter the address!"
 											pt:placeholder="145 222 blackBurn Rd">
 
 										</h:inputText> <br /> <h:message for="Address"
