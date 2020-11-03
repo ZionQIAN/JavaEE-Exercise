@@ -27,6 +27,7 @@
 </head>
 <h:body>
 
+
 	<div id="header">
 		<div id="nav-wrapper">
 			<!-- Nav -->
@@ -63,6 +64,7 @@
 
 									<td valign="bottom"><h:outputLabel for="Name" /> <h:inputText
 											id="Name" value="#{customerContact.name}" required="true"
+											requiredMessage="Please enter the customer contact name!"
 											pt:placeholder="new customer contact name">
 
 										</h:inputText> <br /> <h:message for="Name"
@@ -76,6 +78,7 @@
 									<td valign="bottom"><h:outputLabel for="Gender" /> <h:inputText
 											id="Gender" value="#{customerContact.gender}"
 											binding="#{gender}" required="true"
+											requiredMessage="Please enter the gender!"
 											pt:placeholder="Education">
 
 										</h:inputText> <br /> <h:message for="Gender"
@@ -88,8 +91,10 @@
 
 									<td valign="bottom"><h:outputLabel for="Age" /> <h:inputText
 											id="Age" value="#{customerContact.age}" required="true"
+											requiredMessage="Please enter the age!"
 											pt:placeholder="Peter">
-
+											<f:convertNumber integerOnly="true"/>
+											<f:validateLongRange minimum="1"/>
 										</h:inputText> <br /> <h:message for="Age"
 											class="#{!age.valid ? 'label label-warning' : 'none'}" /></td>
 								</tr>
@@ -98,7 +103,9 @@
 									<td width="100" valign="top">Work Phone:</td>
 									<td valign="bottom"><h:outputLabel for="WorkPhone" /> <h:inputText
 											id="WorkPhone" value="#{customerContact.workPhone}"
-											required="true" pt:placeholder="20">
+											required="true" 
+											requiredMessage="Please enter the work phone!"
+											pt:placeholder="20">
 
 										</h:inputText> <br /> <h:message for="WorkPhone"
 											class="#{!workPhone.valid ? 'label label-warning' : 'none'}" />
@@ -111,9 +118,11 @@
 									<td width="100" valign="top">Position:</td>
 									<td valign="bottom"><h:outputLabel for="Position" /> <h:inputText
 											id="Position" value="#{customerContact.position}"
-											required="true" pt:placeholder="www.123.com">
+											required="true" 
+											requiredMessage="Please enter the position!"
+											pt:placeholder="CEO">
 
-										</h:inputText> <br /> <h:message for="Website"
+										</h:inputText> <br /> <h:message for="Position"
 											class="#{!position.valid ? 'label label-warning' : 'none'}" />
 
 									</td>
