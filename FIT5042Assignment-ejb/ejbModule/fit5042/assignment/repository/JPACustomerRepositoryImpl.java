@@ -1,10 +1,15 @@
 package fit5042.assignment.repository;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Expression;
+import javax.persistence.criteria.Root;
 
 import fit5042.assignment.repositoty.CustomerRepository;
 import fit5042.assignment.repositoty.entities.Customer;
@@ -19,7 +24,7 @@ public class JPACustomerRepositoryImpl implements CustomerRepository{
 	public void addCustomer(Customer customer) throws Exception
 	{
 		List<Customer> customers = entityManager.createNamedQuery(Customer.GET_ALL_QUERY_NAME).getResultList();
-		customer.setCustomerId(customers.get(0).getCustomerId() + 1);
+		//customer.setCustomerId(customers.get(0).getCustomerId() + 1);
 		entityManager.persist(customer);
 		entityManager.flush();
 	}
@@ -59,4 +64,34 @@ public class JPACustomerRepositoryImpl implements CustomerRepository{
 			e.printStackTrace();
 		}
 	}
+	
+	@Override
+    public List<Customer> searchCustomerByName(String customerName) throws Exception {
+  
+     CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+     CriteriaQuery<Customer> cQuery = builder.createQuery(Customer.class);
+     Root<Customer> eRoot = cQuery.from(Customer.class);
+     cQuery.select(eRoot).where(builder.like(eRoot.get("customerName").as(String.class), customerName));
+        List<Customer> Customers = entityManager.createQuery(cQuery).getResultList(); 
+     return Customers;
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

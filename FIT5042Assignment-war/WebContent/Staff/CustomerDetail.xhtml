@@ -1,0 +1,140 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html> 
+<html 	xmlns="http://www.w3.org/1999/xhtml" 
+		xmlns:f="http://java.sun.com/jsf/core" 
+		xmlns:ui="http://xmlns.jcp.org/jsf/facelets"   
+		xmlns:h="http://xmlns.jcp.org/jsf/html"  
+		xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+		
+	<head>
+		<title>Aus Printer</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,700,500,900' rel='stylesheet' type='text/css'/>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<script src="resources/js/skel.min.js"></script>
+		<script src="resources/js/skel-panels.min.js"></script>
+		<script src="resources/js/init.js"></script>
+		<link rel="stylesheet" href="resources/css/skel-noscript.css" />
+		<link rel="stylesheet" href="resources/css/style.css" />
+		<link rel="stylesheet" href="resources/css/style-desktop.css" />
+		<link rel="stylesheet" type ='text/css' href="resources/css/table.css" />
+		<script src="resources/js/table.js" />
+	</head> 
+<h:body> 
+
+	<div id="header">
+			<div id="nav-wrapper"> 
+				<!-- Nav -->
+				<nav id="nav">
+					<ul>
+						<li class="active"><a href="Home.xhtml">Home</a></li>
+						<li><a href="indexAll.xhtml">All Customer</a></li>
+					</ul>
+				</nav>
+			</div>
+			<div class="container">
+
+			<!-- Logo -->
+			<div id="logo">
+				<h1>
+					<a href="#">Australia Printer Company</a>
+				</h1>
+				<span class="tag">Customer Details</span>
+			</div>
+		</div>
+	</div>
+	
+	<div id="main">
+	<section>
+			<p>
+	<div class="container">
+		<h:form id="MyForm">
+                <table class="table table-bordered " id="alternatecolor">
+                    <tr>
+                        <td width ="150" valign="top">Id:</td>
+
+                        <td valign="bottom">
+                            <h:outputLabel id = "Id" >#{customerController.customer.customerId}</h:outputLabel>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width ="100" valign="top">customerName: </td>
+
+                        <td valign="bottom">
+                            <h:outputLabel id = "CustomerName" >#{customerController.customer.customerName}</h:outputLabel>
+                        </td>
+                    </tr>
+                     <tr>
+                        <td width ="100" valign="top">industry:</td>
+
+                        <td valign="bottom">
+                            <h:outputLabel id = "industry" >#{customerController.customer.industry.industryName}</h:outputLabel>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width ="100" valign="top">CEO: </td>
+
+                        <td valign="bottom">
+                            <h:outputLabel id = "CEO" >#{customerController.customer.CEO}</h:outputLabel>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width ="100" valign="top">Number of employees: </td>
+
+                        <td valign="bottom">
+                            <h:outputLabel id = "NumberOfemployees" >
+                                #{customerController.customer.numberOfemployees}
+                                 
+                            </h:outputLabel>
+
+                        </td>
+                    </tr>
+                
+                   <tr>
+                        <td width ="100" valign="top">website:</td>
+
+                        <td valign="bottom">
+                            <h:outputLabel id = "Website" >#{customerController.customer.website}</h:outputLabel>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width ="100" valign="top">officePhone:</td>
+
+                        <td valign="bottom">
+                            <h:outputLabel id = "OfficePhone" >#{customerController.customer.officePhone}</h:outputLabel>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width ="100" valign="top">address:</td>
+
+                        <td valign="bottom">
+                            <h:outputLabel id = "Address" >#{customerController.customer.address}</h:outputLabel>
+                        </td>
+                    </tr>
+
+                 </table>
+                 <h:link id="close" value="Close" outcome="indexAll.xhtml"
+ 						          class="btn btn-primary" />
+
+            </h:form>
+            </div>
+            </p>
+            </section>
+        </div>
+        
+        <!-- Footer -->
+		<div id="footer">
+			<div class="container">
+				<section>
+					<header>
+						<h2>Design: Ziang Qian From MONASH</h2>
+						
+					</header>
+				</section>
+			</div>
+		</div>
+	<!-- /Footer -->
+    </h:body>
+</html>

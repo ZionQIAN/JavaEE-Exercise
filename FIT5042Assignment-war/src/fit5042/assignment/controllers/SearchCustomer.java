@@ -18,6 +18,8 @@ private boolean showForm = true;
 	
 	private int searchByInt;
 	
+	private String searchByString;
+	
 	public boolean isShowForm() 
 	{
 		return showForm;
@@ -47,6 +49,16 @@ private boolean showForm = true;
 		this.searchByInt = searchByInt;
 	}
 	
+	
+	
+	public String getSearchByString() {
+		return searchByString;
+	}
+
+	public void setSearchByString(String searchByString) {
+		this.searchByString = searchByString;
+	}
+
 	public SearchCustomer() 
 	{
 		ELContext context
@@ -65,6 +77,15 @@ private boolean showForm = true;
 	{
 		try {
 			application.searchCustomerById(customerId);
+		} catch (Exception e) {
+		
+		}
+	}
+	
+	public void searchCustomerByName(String customerName) 
+	{
+		try {
+			application.searchCustomerByName(customerName);
 		} catch (Exception e) {
 		
 		}

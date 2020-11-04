@@ -58,6 +58,7 @@ public class RemoveCustomerContact {
 		try {
 			customerContactManagedBean.removeCustomerContact(customerContactId);
 			
+			application.searchAllCustomers();
 			application.searchAllCustomerContact();
 			
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("CustomerContact has been deleted succesfully"));

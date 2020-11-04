@@ -1,53 +1,46 @@
 package fit5042.assignment.repositoty.entities;
 
 import java.io.Serializable;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
 
-@Entity
-@NamedQueries({@NamedQuery(name = Staff.GET_ALL_QUERY_NAME, query = "SELECT s FROM Staff s order by s.staffId desc")})
-public class Staff implements Serializable{
+@Entity(name = "Staff")
+@DiscriminatorValue(value = "S")
+@NamedQueries({
+	@NamedQuery(name = Staff.GET_ALL_QUERY_NAME, query = "SELECT s FROM Staff s") })
+public class Staff extends AppUser implements Serializable{
+
 	public static final String GET_ALL_QUERY_NAME = "Staff.getAll";
 	
-	private int staffId;
-	private String staffName;
+	public Staff() {
+		
+	}
+
+	public Staff(int id, String username, String password, Date dob, Set<Customer> customerMangement,
+			String userLevel) {
+		super(id, username, password, dob, customerMangement, userLevel);
 	
-	public Staff() {}
-	
-	public Staff(String staffName) {
-		this.staffName = staffName;
 	}
 	
-	@Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "staff_id")
-	public int getStaffId() {
-		return staffId;
-	}
 
-	public void setStaffId(int staffId) {
-		this.staffId = staffId;
-	}
-
-	public String getStaffName() {
-		return staffName;
-	}
-
-	public void setStaffName(String staffName) {
-		this.staffName = staffName;
-	}
-
-	@Override
-	public String toString() {
-		return "Staff [staffId=" + staffId + ", staffNameString=" + staffName + "]";
-	}
+	
 	
 	
 
+    
 }

@@ -51,99 +51,108 @@
 
 	<!-- Main -->
 	<div id="main">
-		
-			<section>
-				<p>
-					<div class="container">
 
-					<h:form id="MyForm">
-						<table id="alternatecolor">
+		<section>
+			<p>
+			<div class="container">
 
-							<tr>
-								<td><h:outputLabel id="customerId" value="customerId" /></td>
-								<td><h:outputLabel id="customerName" value="customerName" />
+				<h:form id="MyForm">
+					<table id="alternatecolor">
+
+						<tr>
+							<td><h:outputLabel id="customerId" value="customerId" /></td>
+							<td><h:outputLabel id="customerName" value="customerName" />
+							</td>
+							<td><h:outputLabel id="forNull" value="" /></td>
+						</tr>
+
+						<ui:repeat id="Myrepeat" value="#{ausApplication.customers}"
+							var="customer" varStatus="status">
+
+							<tr
+								onclick="document.getElementById('MyForm:principle').value = document.getElementById('MyForm:Myrepeat:#{status.index}:outCustomerName').textContent">
+								<td><h:outputText
+										value="#{ausApplication.customers.get(status.index).customerId}"
+										id="customerID" /></td>
+
+								<td><h:outputText id="outCustomerName"
+										value="#{ausApplication.customers.get(status.index).customerName}" />
 								</td>
-								<td><h:outputLabel id="forNull" value="" /></td>
+
+								<td><h:link value="ViewContacts | "
+										outcome="faces/AllCustomerContactsOfOneCustomer.xhtml">
+
+										<f:param name="customerID" value="#{status.index}" />
+									</h:link> <h:link value="AddContact | "
+										outcome="faces/AddCustomerContact.xhtml">
+
+										<f:param name="customerID" value="#{status.index}" />
+									</h:link> <h:link value="View | " outcome="faces/CustomerDetail.xhtml">
+
+										<f:param name="customerID" value="#{status.index}" />
+									</h:link> <h:link value="Edit | " outcome="faces/EditCustomer.xhtml">
+
+										<f:param name="customerID" value="#{status.index}" />
+									</h:link> <h:commandLink value="Delete"
+										action="#{removeCustomer.removeCustomer(ausApplication.customers.get(status.index).customerId)}"
+										disabled="#{ausApplication.customers.get(status.index).customerId == null}">
+									</h:commandLink> <h:outputText value=" " /></td>
+
 							</tr>
 
-							<ui:repeat id="Myrepeat" value="#{ausApplication.customers}"
-								var="customer" varStatus="status">
+						</ui:repeat>
 
-								<tr
-									onclick="document.getElementById('MyForm:principle').value = document.getElementById('MyForm:Myrepeat:#{status.index}:outCustomerName').textContent">
-									<td><h:outputText
-											value="#{ausApplication.customers.get(status.index).customerId}"
-											id="customerID" /></td>
+					</table>
 
-									<td><h:outputText id="outCustomerName"
-											value="#{ausApplication.customers.get(status.index).customerName}" />
-									</td>
+					<div>
+						<h:commandButton id="add" value="Add" action="AddCustomer.xhtml"
+							class="btn btn-primary" />
 
-									<td><h:link value="ViewContacts | "
-											outcome="faces/AllCustomerContactsOfOneCustomer.xhtml">
-
-											<f:param name="customerID" value="#{status.index}" />
-										</h:link> <h:link value="AddContact | "
-											outcome="faces/AddCustomerContact.xhtml">
-
-											<f:param name="customerID" value="#{status.index}" />
-										</h:link> <h:link value="View | " outcome="faces/CustomerDetail.xhtml">
-
-											<f:param name="customerID" value="#{status.index}" />
-										</h:link> <h:link value="Edit | " outcome="faces/EditCustomer.xhtml">
-
-											<f:param name="customerID" value="#{status.index}" />
-										</h:link> <h:commandLink value="Delete"
-											action="#{removeCustomer.removeCustomer(ausApplication.customers.get(status.index).customerId)}"
-											disabled="#{ausApplication.customers.get(status.index).customerId == null}">
-										</h:commandLink> <h:outputText value=" " /></td>
-
-								</tr>
-
-							</ui:repeat>
-
-						</table>
-
-						<div>
-							<h:commandButton id="add" value="Add" action="AddCustomer.xhtml"
-								class="btn btn-primary" />
-
-							<h:commandButton id="viewAll" value="View All"
-								action="#{searchCustomer.searchAllCustomer()}"
-								class="btn btn-primary">
-								<f:param name="customerID" value="#{status.index}" />
-							</h:commandButton>
-						</div>
-						<div>
-							<h:inputText value="#{searchCustomer.searchByInt}"
-								id="searchCustomerById" required="true"
-								onchange="if (document.getElementById('MyForm:searchCustomerById').value.trim() == '') {document.getElementById('MyForm:searchCustomerById').value = 0;} " />
-							<h:commandButton id="searchCustomerId"
-								value="Search Customer by Id"
-								action="#{searchCustomer.searchCustomerByInt(searchCustomer.searchByInt)}"
-								class="btn btn-primary">
-								<f:param name="customerID" value="#{status.index}" />
-							</h:commandButton>
-						</div>
-
-						
-
-					</h:form>
+						<h:commandButton id="viewAll" value="View All"
+							action="#{searchCustomer.searchAllCustomer()}"
+							class="btn btn-primary">
+							<f:param name="customerID" value="#{status.index}" />
+						</h:commandButton>
 					</div>
-				</p>
+					<div>
+						<h:inputText value="#{searchCustomer.searchByInt}"
+							id="searchCustomerById" required="true"
+							onchange="if (document.getElementById('MyForm:searchCustomerById').value.trim() == '') {document.getElementById('MyForm:searchCustomerById').value = 0;} " />
+						<h:commandButton id="searchCustomerId"
+							value="Search Customer by Id"
+							action="#{searchCustomer.searchCustomerByInt(searchCustomer.searchByInt)}"
+							class="btn btn-primary">
+							<f:param name="customerID" value="#{status.index}" />
+						</h:commandButton>
+					</div>
+
+					<div>
+						<h:inputText value="#{searchCustomer.searchByString}"
+							id="searchByString" required="true"
+							onchange="if (document.getElementById('MyForm:searchByString').value.trim() == '') {document.getElementById('MyForm:searchByString').value = 'null';} " />
+						<h:commandButton id="searchName" value="Search by Name"
+							action="#{searchCustomer.searchCustomerByName(searchCustomer.searchByString)}"
+							class="btn btn-primary">
+							<f:param name="customerID" value="#{status.index}" />
+						</h:commandButton>
+					</div>
+
+				</h:form>
+			</div>
+			</p>
+		</section>
+	</div>
+
+	<!-- Footer -->
+	<div id="footer">
+		<div class="container">
+			<section>
+				<header>
+					<h2>Design: Ziang Qian From MONASH</h2>
+				</header>
 			</section>
 		</div>
-		
-		<!-- Footer -->
-		<div id="footer">
-			<div class="container">
-				<section>
-					<header>
-						<h2>Design: Ziang Qian From MONASH</h2>
-					</header>
-				</section>
-			</div>
-		</div>
+	</div>
 	<!-- /Footer -->
 </h:body>
 </html>
