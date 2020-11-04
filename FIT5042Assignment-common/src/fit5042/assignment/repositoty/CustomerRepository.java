@@ -19,5 +19,7 @@ public interface CustomerRepository {
 	public void removeCustomer(int customerId) throws Exception;
 	
 	public void editCustomer(Customer customer) throws Exception;
+
+	public List<Customer> searchCustomerByName(String customerName) throws Exception;
 	
 }

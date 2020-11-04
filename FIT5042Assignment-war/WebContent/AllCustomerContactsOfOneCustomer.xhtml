@@ -90,9 +90,9 @@
 										action="#{removeCustomerContact.removeCustomerContact(customerController.customerContacts.get(status.index).customerContactId)}"
 										disabled="#{customerController.customerContacts.get(status.index).customerContactId == null}">
 										<f:param name="customerContactID" value="#{status.index}" />
-										<f:param name="customerID"
-											value="#{customerController.customerId}" />
-									</h:commandLink> <h:outputText value=" " /></td>
+										<f:param name="customerID" value="#{customerController.customerId}" />
+									</h:commandLink> 
+									<h:outputText value=" " /></td>
 							</tr>
 						</ui:repeat>
 					</table>

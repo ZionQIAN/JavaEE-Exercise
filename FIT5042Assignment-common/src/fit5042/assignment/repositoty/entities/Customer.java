@@ -38,13 +38,15 @@ public class Customer implements Serializable{
 	private String address;
 	
 	private Set<CustomerContact> customerContacts;
+	
+	private AppUser appUser;
 
 	public Customer() {
 		
 	}
 	
 	public Customer(int customerId, Industry industry, String CEO, int numberOfemployees, String customerName,
-			String website, int officePhone, String address) {
+			String website, int officePhone, String address, AppUser appUser) {
 		
 		this.customerId = customerId;
 		this.industry = industry;
@@ -55,6 +57,7 @@ public class Customer implements Serializable{
 		this.officePhone = officePhone;
 		this.address = address;
 		this.customerContacts = new HashSet<>();
+		this.appUser = appUser;
 		
 	}
 
@@ -126,6 +129,16 @@ public class Customer implements Serializable{
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+	
+	
+
+	public AppUser getAppUser() {
+		return appUser;
+	}
+
+	public void setAppUser(AppUser appUser) {
+		this.appUser = appUser;
 	}
 
 	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)

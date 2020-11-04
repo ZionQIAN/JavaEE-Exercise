@@ -120,6 +120,17 @@ public class CustomerManagedBean implements Serializable{
 		return customer;
 	}
 	
+	public List<Customer> searchCustomerByName(String customerName) 
+	{
+		
+		try {
+			return customerRepository.searchCustomerByName(customerName);
+		} catch (Exception ex) {
+            Logger.getLogger(CustomerManagedBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+		
+		return null;
+	}
 	
 	
 }

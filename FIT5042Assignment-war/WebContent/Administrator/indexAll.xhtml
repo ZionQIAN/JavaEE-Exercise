@@ -1,0 +1,158 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+<head>
+<title>Aus Printer</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<link
+	href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,700,500,900'
+	rel='stylesheet' type='text/css' />
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="resources/js/skel.min.js"></script>
+<script src="resources/js/skel-panels.min.js"></script>
+<script src="resources/js/init.js"></script>
+<link rel="stylesheet" href="resources/css/skel-noscript.css" />
+<link rel="stylesheet" href="resources/css/style.css" />
+<link rel="stylesheet" href="resources/css/style-desktop.css" />
+<link rel="stylesheet" type='text/css' href="resources/css/table.css" />
+<script src="resources/js/table.js" />
+</head>
+<h:body>
+
+	<div id="header">
+		<div id="nav-wrapper">
+			<!-- Nav -->
+			<nav id="nav">
+				<ul>
+					<li class="active"><a href="Home.xhtml">Home</a></li>
+					<li><a href="indexAll.xhtml">All Customer</a></li>
+				</ul>
+			</nav>
+		</div>
+		<div class="container">
+
+			<!-- Logo -->
+			<div id="logo">
+				<h1>
+					<a href="#">Australia Printer Company</a>
+				</h1>
+				<span class="tag">Customer List</span>
+			</div>
+		</div>
+	</div>
+
+	<!-- Main -->
+	<div id="main">
+
+		<section>
+			<p>
+			<div class="container">
+
+				<h:form id="MyForm">
+					<table id="alternatecolor">
+
+						<tr>
+							<td><h:outputLabel id="customerId" value="customerId" /></td>
+							<td><h:outputLabel id="customerName" value="customerName" />
+							</td>
+							<td><h:outputLabel id="forNull" value="" /></td>
+						</tr>
+
+						<ui:repeat id="Myrepeat" value="#{ausApplication.customers}"
+							var="customer" varStatus="status">
+
+							<tr
+								onclick="document.getElementById('MyForm:principle').value = document.getElementById('MyForm:Myrepeat:#{status.index}:outCustomerName').textContent">
+								<td><h:outputText
+										value="#{ausApplication.customers.get(status.index).customerId}"
+										id="customerID" /></td>
+
+								<td><h:outputText id="outCustomerName"
+										value="#{ausApplication.customers.get(status.index).customerName}" />
+								</td>
+
+								<td><h:link value="ViewContacts | "
+										outcome="AllCustomerContactsOfOneCustomer.xhtml">
+
+										<f:param name="customerID" value="#{status.index}" />
+									</h:link> <h:link value="AddContact | "
+										outcome="AddCustomerContact.xhtml">
+
+										<f:param name="customerID" value="#{status.index}" />
+									</h:link> <h:link value="View | " outcome="CustomerDetail.xhtml">
+
+										<f:param name="customerID" value="#{status.index}" />
+									</h:link> <h:link value="Edit | " outcome="EditCustomer.xhtml">
+
+										<f:param name="customerID" value="#{status.index}" />
+									</h:link> <h:commandLink value="Delete"
+										action="#{removeCustomer.removeCustomer(ausApplication.customers.get(status.index).customerId)}"
+										disabled="#{ausApplication.customers.get(status.index).customerId == null}">
+									</h:commandLink> <h:outputText value=" " /></td>
+
+							</tr>
+
+						</ui:repeat>
+
+					</table>
+
+					<div>
+						<h:commandButton id="add" value="Add" action="AddCustomer.xhtml"
+							class="btn btn-primary" />
+
+						<h:commandButton id="viewAll" value="View All"
+							action="#{searchCustomer.searchAllCustomer()}"
+							class="btn btn-primary">
+							<f:param name="customerID" value="#{status.index}" />
+						</h:commandButton>
+					</div>
+					<div>
+						<h:inputText value="#{searchCustomer.searchByInt}"
+							id="searchCustomerById" required="true"
+							onchange="if (document.getElementById('MyForm:searchCustomerById').value.trim() == '') {document.getElementById('MyForm:searchCustomerById').value = 0;} " />
+						<h:commandButton id="searchCustomerId"
+							value="Search Customer by Id"
+							action="#{searchCustomer.searchCustomerByInt(searchCustomer.searchByInt)}"
+							class="btn btn-primary">
+							<f:param name="customerID" value="#{status.index}" />
+						</h:commandButton>
+					</div>
+
+					<div>
+						<h:inputText value="#{searchCustomer.searchByString}"
+							id="searchByString" required="true"
+							onchange="if (document.getElementById('MyForm:searchByString').value.trim() == '') {document.getElementById('MyForm:searchByString').value = 'null';} " />
+						<h:commandButton id="searchName" value="Search by Name"
+							action="#{searchCustomer.searchCustomerByName(searchCustomer.searchByString)}"
+							class="btn btn-primary">
+							<f:param name="customerID" value="#{status.index}" />
+						</h:commandButton>
+					</div>
+
+				</h:form>
+			</div>
+			</p>
+		</section>
+	</div>
+
+	<!-- Footer -->
+	<div id="footer">
+		<div class="container">
+			<section>
+				<header>
+					<h2>Design: Ziang Qian From MONASH</h2>
+				</header>
+			</section>
+		</div>
+	</div>
+	<!-- /Footer -->
+</h:body>
+</html>

@@ -211,6 +211,17 @@ public class AusApplication {
 		customers.add(customerManagedBean.searchCustomerById(customerId));
 	}
 	
+	public void searchCustomerByName(String customerName) 
+	{
+		customers.clear();
+		
+		for (Customer customer : customerManagedBean.searchCustomerByName(customerName)) 
+		{
+			customers.add(customer);
+		}
+		
+	}
+	
 	public void searchCustomerContactById(int customerContactId) 
 	{
 		customerContacts.clear();

@@ -1,0 +1,172 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<head>
+<title>Aus Printer</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<link
+	href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,700,500,900'
+	rel='stylesheet' type='text/css' />
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="resources/js/skel.min.js"></script>
+<script src="resources/js/skel-panels.min.js"></script>
+<script src="resources/js/init.js"></script>
+<link rel="stylesheet" href="resources/css/skel-noscript.css" />
+<link rel="stylesheet" href="resources/css/style.css" />
+<link rel="stylesheet" href="resources/css/style-desktop.css" />
+<link rel="stylesheet" type='text/css' href="resources/css/table.css" />
+<script src="resources/js/table.js" />
+</head>
+<h:body>
+
+
+	<div id="header">
+		<div id="nav-wrapper">
+			<!-- Nav -->
+			<nav id="nav">
+				<ul>
+					<li class="active"><a href="Home.xhtml">Home</a></li>
+					<li><a href="indexAll.xhtml">All Customer</a></li>
+				</ul>
+			</nav>
+		</div>
+		<div class="container">
+
+			<!-- Logo -->
+			<div id="logo">
+				<h1>
+					<a href="#">Australia Printer Company</a>
+				</h1>
+				<span class="tag">Add New Customer Contact</span>
+			</div>
+		</div>
+	</div>
+
+	<div id="main">
+		<section>
+			<p>
+			<div class="container">
+				<div>
+					<f:view>
+						<h:form>
+
+							<table class="table table-bordered" id="alternatecolor">
+								<tr class="#{!name.valid ? 'has-error' : 'none'}">
+									<td width="100" valign="top">Customer Contact Name:</td>
+
+									<td valign="bottom"><h:outputLabel for="Name" /> <h:inputText
+											id="Name" value="#{customerContact.name}" required="true"
+											requiredMessage="Please enter the customer contact name!"
+											pt:placeholder="new customer contact name">
+
+										</h:inputText> <br /> <h:message for="Name"
+											class="#{!name.valid ? 'label label-warning' : 'none'}" /></td>
+								</tr>
+
+
+
+								<tr class="#{!gender.valid ? 'has-error' : 'none'}">
+									<td width="100" valign="top">Gender:</td>
+									<td valign="bottom"><h:outputLabel for="Gender" /> <h:inputText
+											id="Gender" value="#{customerContact.gender}"
+											binding="#{gender}" required="true"
+											requiredMessage="Please enter the gender!"
+											pt:placeholder="Education">
+
+										</h:inputText> <br /> <h:message for="Gender"
+											class="#{!gender.valid ? 'label label-warning' : 'none'}" />
+									</td>
+								</tr>
+
+								<tr class="#{!age.valid ? 'has-error' : 'none'}">
+									<td width="100" valign="top">Age:</td>
+
+									<td valign="bottom"><h:outputLabel for="Age" /> <h:inputText
+											id="Age" value="#{customerContact.age}" required="true"
+											requiredMessage="Please enter the age!"
+											pt:placeholder="Peter">
+											<f:convertNumber integerOnly="true"/>
+											<f:validateLongRange minimum="1"/>
+										</h:inputText> <br /> <h:message for="Age"
+											class="#{!age.valid ? 'label label-warning' : 'none'}" /></td>
+								</tr>
+
+								<tr class="#{!workPhone.valid ? 'has-error' : 'none'}">
+									<td width="100" valign="top">Work Phone:</td>
+									<td valign="bottom"><h:outputLabel for="WorkPhone" /> <h:inputText
+											id="WorkPhone" value="#{customerContact.workPhone}"
+											required="true" 
+											requiredMessage="Please enter the work phone!"
+											pt:placeholder="20">
+
+										</h:inputText> <br /> <h:message for="WorkPhone"
+											class="#{!workPhone.valid ? 'label label-warning' : 'none'}" />
+
+									</td>
+								</tr>
+
+
+								<tr class="#{!position.valid ? 'has-error' : 'none'}">
+									<td width="100" valign="top">Position:</td>
+									<td valign="bottom"><h:outputLabel for="Position" /> <h:inputText
+											id="Position" value="#{customerContact.position}"
+											required="true" 
+											requiredMessage="Please enter the position!"
+											pt:placeholder="CEO">
+
+										</h:inputText> <br /> <h:message for="Position"
+											class="#{!position.valid ? 'label label-warning' : 'none'}" />
+
+									</td>
+								</tr>
+
+
+
+
+							</table>
+
+							<h:commandButton id="submit" value="Submit"
+								action="#{addCustomerContact.addCustomerContact(customerContact)}"
+								class="btn btn-primary">
+								<f:param name="customerID"
+									value="#{customerController.customerId}" />
+							</h:commandButton>
+
+							<h:link id="close" value="Close" outcome="indexAll.xhtml"
+								class="btn btn-primary">
+
+							</h:link>
+
+						</h:form>
+
+					</f:view>
+				</div>
+
+			</div>
+			</p>
+		</section>
+	</div>
+	<!-- Footer -->
+		<div id="footer">
+			<div class="container">
+				<section>
+					<header>
+						<h2>Design: Ziang Qian From MONASH</h2>
+						
+					</header>
+				</section>
+			</div>
+		</div>
+	<!-- /Footer -->
+	
+</h:body>
+</html>
+

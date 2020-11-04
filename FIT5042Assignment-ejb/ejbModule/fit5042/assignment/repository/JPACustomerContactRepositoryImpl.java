@@ -48,9 +48,14 @@ public class JPACustomerContactRepositoryImpl implements CustomerContactReposito
 	public void removeCustomerContact(int customerContactId) throws Exception
 	{
 		CustomerContact customerContact = searchCustomerContactById(customerContactId);
+		
 		if (customerContact != null) 
 		{
+			Customer customer = customerContact.getCustomer();
+			customer.getCustomerContacts().remove(customerContact);
+			entityManager.merge(customer);
 			entityManager.remove(customerContact);
+			entityManager.flush();
 		}
 	}
 	
