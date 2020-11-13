@@ -147,6 +147,7 @@
 
                 <h:commandButton id="save" value="Save" action="#{customerContactManagedBean.editCustomerContact(customerContactController.customerContact)}"  class="btn btn-primary" >
                     <f:param name="customerID" value="#{customerContactController.customerId}"/>
+                    <f:param name="customerContactID" value="#{customerContactController.customerContact.customerContactId}"/>
                 </h:commandButton>
                 
                 <h:link id="close" value="Close" outcome="faces/AllCustomerContactsOfOneCustomer.xhtml"

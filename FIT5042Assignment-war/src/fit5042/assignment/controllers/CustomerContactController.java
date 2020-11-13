@@ -30,6 +30,8 @@ public class CustomerContactController {
 		
 		customerContact = new CustomerContact();
 		
+		customerContactId = 0;
+		
 		customerId = Integer.valueOf(FacesContext.getCurrentInstance()
 				.getExternalContext()
 				.getRequestParameterMap()
@@ -49,7 +51,7 @@ public class CustomerContactController {
 		{
 			customerContactId = Integer.valueOf(temp);
 			
-			customerContact = getCustomerContact();
+			customerContact = getCustomerContactInfo();
 		}else {
 			customerContactId = 0;
 		}
@@ -88,7 +90,16 @@ public class CustomerContactController {
 		this.customerId = customerId;
 	}
 
-	public CustomerContact getCustomerContact() 
+	
+	public CustomerContact getCustomerContact() {
+		return customerContact;
+	}
+
+	public void setCustomerContact(CustomerContact customerContact) {
+		this.customerContact = customerContact;
+	}
+
+	public CustomerContact getCustomerContactInfo() 
 	{
 		//if(customerContact == null)
 		//{

@@ -33,7 +33,7 @@
 			<nav id="nav">
 				<ul>
 					<li class="active"><a href="Home.xhtml">Home</a></li>
-					<li><a href="indexAll.xhtml">All Customer</a></li>
+					<li><a href="index.xhtml">All Customer</a></li>
 				</ul>
 			</nav>
 		</div>
@@ -44,11 +44,10 @@
 				<h1>
 					<a href="#">Australia Printer Company</a>
 				</h1>
-				<span class="tag">Customer Contact Details</span>
+				<span class="tag">Your Profile</span>
 			</div>
 		</div>
 	</div>
-
 
 	<div id="main">
 		<section>
@@ -59,70 +58,65 @@
 						<tr>
 							<td width="150" valign="top">Id:</td>
 
-							<td valign="bottom"><h:outputLabel id="Id">#{customerContactController.customerContact.customerContactId}</h:outputLabel>
+							<td valign="bottom"><h:outputLabel id="Id">#{ausApplication.appUser.id}</h:outputLabel>
 							</td>
 						</tr>
 						<tr>
-							<td width="100" valign="top">Customer Contact Name:</td>
+							<td width="100" valign="top">AppUserName:</td>
 
-							<td valign="bottom"><h:outputLabel id="CustomerContactName">#{customerContactController.customerContact.name}</h:outputLabel>
+							<td valign="bottom"><h:outputLabel id="appUserName">#{ausApplication.appUser.username}</h:outputLabel>
 							</td>
 						</tr>
 						<tr>
-							<td width="100" valign="top">gender:</td>
+							<td width="100" valign="top">password:</td>
 
-							<td valign="bottom"><h:outputLabel id="industry">#{customerContactController.customerContact.gender}</h:outputLabel>
+							<td valign="bottom"><h:outputLabel id="password">#{ausApplication.appUser.password}</h:outputLabel>
 							</td>
 						</tr>
 						<tr>
-							<td width="100" valign="top">age:</td>
+							<td width="100" valign="top">Birthday:</td>
 
-							<td valign="bottom"><h:outputLabel id="CEO">#{customerContactController.customerContact.age}</h:outputLabel>
+							<td valign="bottom"><h:outputLabel id="birthday"
+									pattern="yyyy-MM-dd">#{ausApplication.appUser.dob}</h:outputLabel>
+
 							</td>
 						</tr>
 						<tr>
-							<td width="100" valign="top">Work Phone:</td>
+							<td width="100" valign="top">UserType:</td>
 
-							<td valign="bottom"><h:outputLabel id="NumberOfemployees">
-                                #{customerContactController.customerContact.workPhone}
+							<td valign="bottom"><h:outputLabel id="userType">
+                                #{ausApplication.appUser.userLevel}
                                  
                             </h:outputLabel></td>
 						</tr>
 
 						<tr>
-							<td width="100" valign="top">Position:</td>
+							<td><h:link value="Edit | " outcome="EditPassword.xhtml">
+									<f:param name="appUserID" value="#{ausApplication.appUser.id}" />
+								</h:link></td>
 
-							<td valign="bottom"><h:outputLabel id="Position">#{customerContactController.customerContact.position}</h:outputLabel>
-							</td>
 						</tr>
 
-
 					</table>
-
-					<h:link id="close" value="Close"
-						outcome="AllCustomerContactsOfOneCustomer.xhtml"
-						class="btn btn-primary">
-						<f:param name="customerID"
-							value="#{customerContactController.customerId}" />
-					</h:link>
 
 				</h:form>
 			</div>
 			</p>
 		</section>
 	</div>
-	
+
 	<!-- Footer -->
-		<div id="footer">
-			<div class="container">
-				<section>
-					<header>
-						<h2>Design: Ziang Qian From MONASH</h2>
-						
-					</header>
-				</section>
-			</div>
+	<div id="footer">
+		<div class="container">
+			<section>
+				<header>
+					<h2>Design: Ziang Qian From MONASH</h2>
+
+				</header>
+			</section>
 		</div>
+	</div>
 	<!-- /Footer -->
 </h:body>
 </html>
+

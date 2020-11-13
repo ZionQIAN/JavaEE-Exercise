@@ -12,7 +12,9 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
+import fit5042.assignment.controllers.LocalAppUser;
 import fit5042.assignment.repositoty.CustomerRepository;
+import fit5042.assignment.repositoty.entities.AppUser;
 import fit5042.assignment.repositoty.entities.Customer;
 import fit5042.assignment.repositoty.entities.Industry;
 
@@ -107,6 +109,8 @@ public class CustomerManagedBean implements Serializable{
 		Customer customer = new Customer();
 		String industryName = localCustomer.getIndustryName();
 		Industry industry = new Industry(industryName);
+		
+		
 		customer.setIndustry(industry);
 		customer.setAddress(localCustomer.getAddress());
 		customer.setCEO(localCustomer.getCEO());
@@ -132,5 +136,29 @@ public class CustomerManagedBean implements Serializable{
 		return null;
 	}
 	
+	public void assignUser(int appUserId, Customer customer) 
+	{
+		try {
+
+            customerRepository.assignUser(appUserId, customer);
+
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Customer has been assign succesfully"));
+        } catch (Exception ex) {
+            Logger.getLogger(CustomerManagedBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+	}
+	
+	public void addStaffCustomer(AppUser appUser, fit5042.assignment.controllers.Customer localCustomer) 
+	{
+		Customer customer = convertCustomerToEntity(localCustomer);
+		
+		customer.setAppUser(appUser);
+		
+		try {
+			customerRepository.addCustomer(customer);
+		} catch (Exception ex) {
+            Logger.getLogger(CustomerManagedBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+	}
 	
 }

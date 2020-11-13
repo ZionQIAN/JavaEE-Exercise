@@ -24,6 +24,7 @@ public class Customer implements Serializable{
 	private String website;
 	private int officePhone;
 	private String address; 
+	private String appUserId;
 	
 	private Set<fit5042.assignment.repositoty.entities.Customer> customers;
 	
@@ -31,9 +32,13 @@ public class Customer implements Serializable{
 	public Customer() {}
 
 
+	
+
+
 	public Customer(String industryName, int customerId, String cEO, int numberOfemployees, String customerName,
-			String website, int officePhone, String address) {
-		
+			String website, int officePhone, String address, String appUserId
+			) {
+		super();
 		this.industryName = industryName;
 		this.customerId = customerId;
 		CEO = cEO;
@@ -42,7 +47,12 @@ public class Customer implements Serializable{
 		this.website = website;
 		this.officePhone = officePhone;
 		this.address = address;
+		this.appUserId = appUserId;
+		
 	}
+
+
+
 
 
 	public String getIndustryName() {
@@ -139,14 +149,33 @@ public class Customer implements Serializable{
 		this.customers = customers;
 	}
 
+	
+
+	public String getAppUserId() {
+		return appUserId;
+	}
+
+
+	public void setAppUserId(String appUserId) {
+		this.appUserId = appUserId;
+	}
+
+
+
+
 
 	@Override
 	public String toString() {
 		return "Customer [industryName=" + industryName + ", customerId=" + customerId + ", CEO=" + CEO
 				+ ", numberOfemployees=" + numberOfemployees + ", customerName=" + customerName + ", website=" + website
-				+ ", officePhone=" + officePhone + ", address=" + address + ", customers=" + customers + "]";
+				+ ", officePhone=" + officePhone + ", address=" + address + ", appUserId=" + appUserId + "]";
 	}
 
+
+
+
+
+	
 
 	
 	

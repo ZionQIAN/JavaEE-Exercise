@@ -44,85 +44,77 @@
 				<h1>
 					<a href="#">Australia Printer Company</a>
 				</h1>
-				<span class="tag">Customer Contact Details</span>
+				<span class="tag">Assign AppUser</span>
 			</div>
 		</div>
 	</div>
-
 
 	<div id="main">
 		<section>
 			<p>
 			<div class="container">
+
+
 				<h:form id="MyForm">
+
 					<table class="table table-bordered " id="alternatecolor">
-						<tr>
-							<td width="150" valign="top">Id:</td>
 
-							<td valign="bottom"><h:outputLabel id="Id">#{customerContactController.customerContact.customerContactId}</h:outputLabel>
+						<tr>
+							<td width="150" valign="top">Customer Id:</td>
+							<td valign="bottom"><h:outputLabel id="CustomerId">#{customerController.customer.customerId}</h:outputLabel>
 							</td>
 						</tr>
-						<tr>
-							<td width="100" valign="top">Customer Contact Name:</td>
 
-							<td valign="bottom"><h:outputLabel id="CustomerContactName">#{customerContactController.customerContact.name}</h:outputLabel>
+						<tr>
+							<td width="150" valign="top">Old App User Id:</td>
+							<td valign="bottom"><h:outputLabel id="AppUserId">#{customerController.dispalyAppUserId}</h:outputLabel>
 							</td>
 						</tr>
-						<tr>
-							<td width="100" valign="top">gender:</td>
 
-							<td valign="bottom"><h:outputLabel id="industry">#{customerContactController.customerContact.gender}</h:outputLabel>
-							</td>
-						</tr>
-						<tr>
-							<td width="100" valign="top">age:</td>
+						<tr class="#{!id.valid ? 'has-error' : 'none'}">
+							<td width="100" valign="top">New App User Id:</td>
 
-							<td valign="bottom"><h:outputLabel id="CEO">#{customerContactController.customerContact.age}</h:outputLabel>
-							</td>
-						</tr>
-						<tr>
-							<td width="100" valign="top">Work Phone:</td>
+							<td valign="bottom"><h:outputLabel for="id" /> <h:inputText
+									id="id" value="#{customerController.appUserId}" required="true"
+									requiredMessage="Please enter the app user Id!">
 
-							<td valign="bottom"><h:outputLabel id="NumberOfemployees">
-                                #{customerContactController.customerContact.workPhone}
-                                 
-                            </h:outputLabel></td>
+								</h:inputText> <br /> <h:message for="id"
+									class="#{!id.valid ? 'label label-warning' : 'none'}" /></td>
 						</tr>
 
-						<tr>
-							<td width="100" valign="top">Position:</td>
 
-							<td valign="bottom"><h:outputLabel id="Position">#{customerContactController.customerContact.position}</h:outputLabel>
-							</td>
-						</tr>
 
 
 					</table>
 
-					<h:link id="close" value="Close"
-						outcome="AllCustomerContactsOfOneCustomer.xhtml"
+					<h:commandButton id="save" value="Save"
+						action="#{customerManagedBean.assignUser(customerController.appUserId, customerController.customer)}"
 						class="btn btn-primary">
 						<f:param name="customerID"
-							value="#{customerContactController.customerId}" />
-					</h:link>
-
+							value="#{customerController.customerId}" />
+					</h:commandButton>
+					
+					<h:link id="close" value="Close" outcome="indexAll.xhtml"
+						class="btn btn-primary" />
+						
 				</h:form>
 			</div>
 			</p>
 		</section>
 	</div>
-	
+
 	<!-- Footer -->
-		<div id="footer">
-			<div class="container">
-				<section>
-					<header>
-						<h2>Design: Ziang Qian From MONASH</h2>
-						
-					</header>
-				</section>
-			</div>
+	<div id="footer">
+		<div class="container">
+			<section>
+				<header>
+					<h2>Design: Ziang Qian From MONASH</h2>
+
+				</header>
+			</section>
 		</div>
+	</div>
 	<!-- /Footer -->
+
 </h:body>
 </html>

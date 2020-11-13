@@ -12,6 +12,7 @@ import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Root;
 
 import fit5042.assignment.repositoty.CustomerRepository;
+import fit5042.assignment.repositoty.entities.AppUser;
 import fit5042.assignment.repositoty.entities.Customer;
 
 @Stateless
@@ -58,6 +59,21 @@ public class JPACustomerRepositoryImpl implements CustomerRepository{
 	@Override
 	public void editCustomer(Customer customer) throws Exception
 	{
+		try {
+			entityManager.merge(customer);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Override
+	public void assignUser(int appUserId, Customer customer) throws Exception
+	{
+		List<AppUser> appUsers = entityManager.createNamedQuery(AppUser.GET_ALL_QUERY_NAME).getResultList();
+		AppUser appUser = entityManager.find(AppUser.class, appUserId);
+		
+		customer.setAppUser(appUser);
+		
 		try {
 			entityManager.merge(customer);
 		} catch (Exception e) {

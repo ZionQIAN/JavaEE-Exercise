@@ -79,21 +79,35 @@
 										value="#{ausApplication.customers.get(status.index).customerName}" />
 								</td>
 
-								<td><h:link value="ViewContacts | "
+								<td>
+								<h:link value="ViewContacts | "
 										outcome="AllCustomerContactsOfOneCustomer.xhtml">
 
 										<f:param name="customerID" value="#{status.index}" />
-									</h:link> <h:link value="AddContact | "
+									</h:link> 
+									
+									<h:link value="AddContact | "
 										outcome="AddCustomerContact.xhtml">
 
 										<f:param name="customerID" value="#{status.index}" />
-									</h:link> <h:link value="View | " outcome="CustomerDetail.xhtml">
+									</h:link> 
+									
+									<h:link value="View | " outcome="CustomerDetail.xhtml">
 
 										<f:param name="customerID" value="#{status.index}" />
-									</h:link> <h:link value="Edit | " outcome="EditCustomer.xhtml">
+									</h:link> 
+									
+									<h:link value="Edit | " outcome="EditCustomer.xhtml">
 
 										<f:param name="customerID" value="#{status.index}" />
-									</h:link> <h:commandLink value="Delete"
+									</h:link> 
+									
+									<h:link value="Assign | " outcome="AssignCustomer.xhtml">
+
+										<f:param name="customerID" value="#{status.index}" />
+									</h:link> 
+									
+									<h:commandLink value="Delete"
 										action="#{removeCustomer.removeCustomer(ausApplication.customers.get(status.index).customerId)}"
 										disabled="#{ausApplication.customers.get(status.index).customerId == null}">
 									</h:commandLink> <h:outputText value=" " /></td>

@@ -74,22 +74,26 @@
 									</td>
 								</tr>
 
+								
+								<tr>
+									<td width="100" valign="top">Industry:</td>
 
-
-								<tr class="#{!industryName.valid ? 'has-error' : 'none'}">
-									<td width="100" valign="top">Industry Name:</td>
-									<td valign="bottom"><h:outputLabel for="IndustryName" />
-										<h:inputText id="IndustryName"
-											value="#{customer.industryName}" binding="#{industryName}"
-											required="true" 
-											requiredMessage="Please enter the industry name!"
-											pt:placeholder="Education">
-
-										</h:inputText> <br /> <h:message for="IndustryName"
-											class="#{!industryName.valid ? 'label label-warning' : 'none'}" />
+									<td valign="bottom">
+										<h:outputLabel>
+											<h:selectOneMenu value="#{customer.industryName}" required="true">
+											   <f:selectItem itemValue="Bank" itemLabel="Bank" />
+											   <f:selectItem itemValue="Building" itemLabel="Building" />    
+											   <f:selectItem itemValue="Data Communication" itemLabel="Data Communication" /> 
+											   <f:selectItem itemValue="Education" itemLabel="Education" /> 
+											   <f:selectItem itemValue="Farm" itemLabel="Farm" /> 
+											   <f:selectItem itemValue="Health" itemLabel="Health" /> 
+											   <f:selectItem itemValue="Mining" itemLabel="Mining" /> 
+											   <f:selectItem itemValue="Publishing" itemLabel="Publishing" />                
+											</h:selectOneMenu>
+										</h:outputLabel>
 									</td>
 								</tr>
-
+								
 								<tr class="#{!CEO.valid ? 'has-error' : 'none'}">
 									<td width="100" valign="top">CEO:</td>
 
@@ -101,7 +105,8 @@
 										</h:inputText> <br /> <h:message for="CEO"
 											class="#{!CEO.valid ? 'label label-warning' : 'none'}" /></td>
 								</tr>
-
+								
+								
 								<tr class="#{!numberOfemployees.valid ? 'has-error' : 'none'}">
 									<td width="100" valign="top">Number of employees:</td>
 									<td valign="bottom"><h:outputLabel for="NumberOfemployees" />
