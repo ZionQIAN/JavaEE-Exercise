@@ -59,17 +59,32 @@ public class AddCustomer implements Serializable{
 	
 	public void addCustomer(Customer localCustomer) 
 	{
-		try {
-			customerManagedBean.addCustomer(localCustomer);
+		
+		if (application.getAppUser().getId() != 0) 
+		{
 			
-			application.searchAllCustomers();
-			
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Customer has been added succesfully"));
-		} catch (Exception e) {
-			
+			try {
+				customerManagedBean.addStaffCustomer(application.getAppUser(), localCustomer);
+				
+				application.searchAllCustomers();
+				
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Customer has been added succesfully"));
+			} catch (Exception e) {
+				
+			}
+		}else 
+		{
+			try {
+				customerManagedBean.addCustomer(localCustomer);
+				
+				application.searchAllCustomers();
+				
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Customer has been added succesfully"));
+			} catch (Exception e) {
+				
+			}
 		}
 		
-		showForm = true;
 	}
 	
 	

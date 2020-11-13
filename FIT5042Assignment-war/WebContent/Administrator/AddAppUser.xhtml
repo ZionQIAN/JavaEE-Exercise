@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<head>
+<title>Aus Printer</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<link
+	href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,700,500,900'
+	rel='stylesheet' type='text/css' />
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="resources/js/skel.min.js"></script>
+<script src="resources/js/skel-panels.min.js"></script>
+<script src="resources/js/init.js"></script>
+<link rel="stylesheet" href="resources/css/skel-noscript.css" />
+<link rel="stylesheet" href="resources/css/style.css" />
+<link rel="stylesheet" href="resources/css/style-desktop.css" />
+<link rel="stylesheet" type='text/css' href="resources/css/table.css" />
+<script src="resources/js/table.js" />
+
+</head>
+<h:body>
+
+
+	<div id="header">
+		<div id="nav-wrapper">
+			<!-- Nav -->
+			<nav id="nav">
+				<ul>
+					<li class="active"><a href="Home.xhtml">Home</a></li>
+					<li><a href="index.xhtml">All Customer</a></li>
+				</ul>
+			</nav>
+		</div>
+		<div class="container">
+
+			<!-- Logo -->
+			<div id="logo">
+				<h1>
+					<a href="#">Australia Printer Company</a>
+				</h1>
+				<span class="tag">Add New App User</span>
+			</div>
+		</div>
+	</div>
+
+
+	<div id="main">
+		<section>
+			<p>
+			<div class="container">
+				<div>
+					<f:view>
+						<h:form>
+							<h:selectOneMenu value="#{localStaff.userLevel}">
+							   <f:selectItem itemValue="S" itemLabel="Staff" />
+							   <f:selectItem itemValue="A" itemLabel="Admin" />                   
+							</h:selectOneMenu>
+
+
+
+									
+							<table class="table table-bordered" id="alternatecolor">
+	
+								<tr class="#{!username.valid ? 'has-error' : 'none'}">
+									<td width="100" valign="top">App User Name:</td>
+
+									<td valign="bottom"><h:outputLabel for="AppUserName" /> <h:inputText
+											id="AppUserName" value="#{localStaff.userName}"
+											required="true"
+											requiredMessage="Please enter the app user name(Email)!"
+											validatorMessage="Your user name must be a Email!"
+											pt:placeholder="App User Name">
+											<f:validateRegex
+										pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+
+										</h:inputText> <br /> <h:message for="AppUserName"
+											class="#{!username.valid ? 'label label-warning' : 'none'}" />
+									</td>
+								</tr>
+								<tr class="#{!dob.valid ? 'has-error' : 'none'}">
+									<td width="100" valign="top">birthday:</td>
+									<td valign="bottom"><h:outputLabel for="Dob" /> <h:inputText
+											id="Dob" value="#{localStaff.dob}" required="true"
+											requiredMessage="Please enter the birthday!"
+											validatorMessage="Your birthday must be with format like yyyy-mm-dd!"
+											pt:placeholder="1997-12-25">
+											<f:convertDateTime pattern="yyyy-MM-dd" />
+
+										</h:inputText> <br /> <h:message for="Dob"
+											class="#{!dob.valid ? 'label label-warning' : 'none'}" /></td>
+								</tr>
+								
+								<tr class="#{!password.valid ? 'has-error' : 'none'}">
+									<td width="100" valign="top">Password:</td>
+									<td valign="bottom"><h:outputLabel for="password" /> <h:inputText
+											id="password" value="#{localStaff.password}" required="true"
+											requiredMessage="Please enter the password!"
+											pt:placeholder="123qaz">
+
+										</h:inputText> <br /> <h:message for="password"
+											class="#{!password.valid ? 'label label-warning' : 'none'}" />
+									</td>
+								</tr>
+
+
+
+							</table>
+
+							<h:commandButton id="submit" value="Submit"
+								action="#{addStaff.addStaff(localStaff)}"
+								class="btn btn-primary" />
+							<h:link id="close" value="Close" outcome="AllAppUser.xhtml"
+								class="btn btn-primary" />
+
+						</h:form>
+
+					</f:view>
+				</div>
+			</div>
+			</p>
+		</section>
+	</div>
+
+	<!-- Footer -->
+	<div id="footer">
+		<div class="container">
+			<section>
+				<header>
+					<h2>Design: Ziang Qian From MONASH</h2>
+				</header>
+			</section>
+		</div>
+	</div>
+	<!-- /Footer -->
+</h:body>
+</html>
+

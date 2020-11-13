@@ -19,9 +19,14 @@ import fit5042.assignment.repositoty.entities.CustomerContact;
 public class CustomerController {
 		private int customerId;
 		
+		private int appUserId;
+		
+		private String dispalyAppUserId;
+		
 		private fit5042.assignment.repositoty.entities.Customer customer;
 		
 		private ArrayList<CustomerContact> customerContacts = new ArrayList<CustomerContact>();
+		
 		
 		//private int searchByInt;
 		
@@ -36,6 +41,7 @@ public class CustomerController {
 			this.customerId = customerId;
 		}
 		
+		
 
 		//public int getSearchedCustomerContactId() {
 		//	return searchedCustomerContactId;
@@ -45,6 +51,46 @@ public class CustomerController {
 		//public void setSearchedCustomerContactId(int searchedCustomerContactId) {
 		//	this.searchedCustomerContactId = searchedCustomerContactId;
 		//}
+
+
+		public int getAppUserId() {
+			return appUserId;
+		}
+
+
+		public void setAppUserId(int appUserId) {
+			this.appUserId = appUserId;
+		}
+
+		
+		public String getDispalyAppUserId() {
+			return dispalyAppUserId;
+		}
+
+
+		public void setDispalyAppUserId(String dispalyAppUserId) {
+			this.dispalyAppUserId = dispalyAppUserId;
+		}
+
+		
+		public fit5042.assignment.repositoty.entities.Customer getCustomer() {
+			return customer;
+		}
+
+
+		public void setCustomer(fit5042.assignment.repositoty.entities.Customer customer) {
+			this.customer = customer;
+		}
+
+
+		public void setCustomerContacts(ArrayList<CustomerContact> customerContacts) {
+			this.customerContacts = customerContacts;
+		}
+
+		
+		public ArrayList<CustomerContact> getCustomerContacts() {
+			return customerContacts;
+		}
 
 
 		public CustomerController() 
@@ -64,15 +110,18 @@ public class CustomerController {
 		@PostConstruct
 		public void init() 
 		{
+			
+			
 			customerId = Integer.valueOf(FacesContext.getCurrentInstance()
 					.getExternalContext()
 					.getRequestParameterMap()
 					.get("customerID"));
 			
-			customer = getCustomer();
+			customer = getCustomerInfo();
 			
-			customerContacts = getCustomerContacts();
+			customerContacts = getCustomerContactsInfo();
 			
+			setDispalyId();
 //			String tempString = FacesContext.getCurrentInstance()
 //					.getExternalContext()
 //					.getRequestParameterMap()
@@ -104,7 +153,7 @@ public class CustomerController {
 		//	
 		//}
 		
-		public fit5042.assignment.repositoty.entities.Customer getCustomer()
+		public fit5042.assignment.repositoty.entities.Customer getCustomerInfo()
 		{
 			if(customer == null) 
 			{
@@ -124,7 +173,7 @@ public class CustomerController {
 			return customer;
 		}
 		
-		public ArrayList<fit5042.assignment.repositoty.entities.CustomerContact> getCustomerContacts()
+		public ArrayList<fit5042.assignment.repositoty.entities.CustomerContact> getCustomerContactsInfo()
 		{
 			
 				customerContacts.clear();
@@ -138,7 +187,17 @@ public class CustomerController {
 			return customerContacts;
 		}
 		
-		
+		public void setDispalyId() 
+		{
+			if (customer.getAppUser() != null) 
+			{
+				dispalyAppUserId = String.valueOf(customer.getAppUser().getId());
+			}
+			else 
+			{
+				dispalyAppUserId = "no user assign";
+			}
+		}
 //		public void filterCustomerContacts()
 //		{
 //			ArrayList<CustomerContact> tempArrayList = new ArrayList<CustomerContact>();

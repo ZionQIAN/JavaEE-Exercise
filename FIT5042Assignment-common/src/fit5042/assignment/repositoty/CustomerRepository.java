@@ -21,5 +21,7 @@ public interface CustomerRepository {
 	public void editCustomer(Customer customer) throws Exception;
 
 	public List<Customer> searchCustomerByName(String customerName) throws Exception;
+
+	void assignUser(int appUserId, Customer customer) throws Exception;
 	
 }

@@ -10,8 +10,10 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
+import fit5042.assignment.repositoty.entities.AppUser;
 import fit5042.assignment.repositoty.entities.Customer;
 import fit5042.assignment.repositoty.entities.CustomerContact;
+import fit5042.assignment.mbeans.AppUserManagedBean;
 import fit5042.assignment.mbeans.CustomerContactManagedBean;
 import fit5042.assignment.mbeans.CustomerManagedBean;
 
@@ -26,9 +28,21 @@ public class AusApplication {
 	@ManagedProperty(value = "#{customerContactManagedBean}")
 	CustomerContactManagedBean customerContactManagedBean;
 	
+	@ManagedProperty(value = "#{appUserManagedBean}")
+	AppUserManagedBean appUserManagedBean;
+	
 	private ArrayList<Customer> customers;
 	
 	private ArrayList<CustomerContact> customerContacts;
+	
+	private ArrayList<AppUser> appUsers;
+	
+	private AppUser appUser;
+	
+	private String userName;
+	
+	private String userType;
+	
 	
 	///private ArrayList<CustomerContact> oneCustomerContacts;
 	
@@ -47,6 +61,10 @@ public class AusApplication {
 		
 		customerContacts = new ArrayList<>();
 		
+		appUsers = new ArrayList<>();
+		
+		appUser = new AppUser();
+		
 		ELContext context = FacesContext.getCurrentInstance().getELContext();
 		
 		customerManagedBean = (CustomerManagedBean) FacesContext.getCurrentInstance().getApplication()
@@ -54,6 +72,13 @@ public class AusApplication {
 		
 		customerContactManagedBean = (CustomerContactManagedBean) FacesContext.getCurrentInstance().getApplication()
 				.getELResolver().getValue(context, null, "customerContactManagedBean");
+		
+		appUserManagedBean = (AppUserManagedBean) FacesContext.getCurrentInstance().getApplication()
+				.getELResolver().getValue(context, null, "appUserManagedBean");
+		
+		userName =  FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal().getName();
+		
+		updateAppUser();
 		
 		updateCustomerList();
 		
@@ -83,10 +108,20 @@ public class AusApplication {
 	//	updateCustomerContactList() ;
 	//
 	//}
-
+	
 
 	public ArrayList<Customer> getCustomers() {
 		return customers;
+	}
+
+
+	public ArrayList<AppUser> getAppUsers() {
+		return appUsers;
+	}
+
+
+	public void setAppUsers(ArrayList<AppUser> appUsers) {
+		this.appUsers = appUsers;
 	}
 
 
@@ -104,6 +139,35 @@ public class AusApplication {
 		this.customerContacts = customerContacts;
 	}
 
+	
+	public AppUser getAppUser() {
+		return appUser;
+	}
+
+
+	public void setAppUser(AppUser appUser) {
+		this.appUser = appUser;
+	}
+
+
+	public void updateAppUser() 
+	{
+		if(appUsers != null && appUsers.size() > 0) 
+		{
+			
+		}
+		else 
+		{
+			appUsers.clear();
+			
+			List<AppUser> tempAppUsers = appUserManagedBean.getAllAppUser();
+			
+			for (AppUser appUser : appUserManagedBean.getAllAppUser()) 
+			{
+				appUsers.add(appUser);
+			}
+		}
+	}
 
 	public void updateCustomerList() 
 	{
@@ -117,10 +181,16 @@ public class AusApplication {
 			
 			List<Customer> tempArrayList = customerManagedBean.getAllCustomer();
 			
+			
+			
 			for (Customer customer : customerManagedBean.getAllCustomer()) 
 			{
 				customers.add(customer);
 			}
+			
+			userType = checkUserType();
+			
+			customers = updateUserCustomers(userType, customers);
 			
 			setCustomers(customers);
 		}
@@ -182,16 +252,52 @@ public class AusApplication {
 		return tempCustomerContact;
 	}
 	
+	public void searchAllAppUser() 
+	{
+		appUsers.clear();
+		
+		for (AppUser appUser: appUserManagedBean.getAllAppUser()) 
+		{
+			appUsers.add(appUser);
+		}
+		
+		setAppUsers(appUsers);
+	}
+	
 	public void searchAllCustomers() 
 	{
 		customers.clear();
 		
-		for (Customer customer : customerManagedBean.getAllCustomer()) 
+		List<Customer> temArrayList = new ArrayList<Customer>();
+		
+		 
+		do{
+			try {
+				temArrayList = customerManagedBean.getAllCustomer();
+				
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		while(temArrayList.size() == 0);
+		
+		for (Customer customer : temArrayList) 
 		{
 			customers.add(customer);
 		}
 		
-		setCustomers(customers);
+		if (appUser.getId() == 0) 
+		{
+			
+			setCustomers(customers);
+		}else 
+		{
+			customers = updateUserCustomers(userType, customers);
+			
+			setCustomers(customers);
+		}
+		
 	}
 	
 	public void searchAllCustomerContact() 
@@ -230,7 +336,93 @@ public class AusApplication {
 	}
 	
 	
+	public String checkCustomerType(ArrayList<Customer> list) 
+	{
+		ArrayList<Customer> tempArrayList = new ArrayList<Customer>();
+		try {
+			for (Customer customertemp: list) 
+			{
+				if(customertemp.getAppUser() != null) 
+				{
+					AppUser tempAppUser = customertemp.getAppUser();
+					
+						if (tempAppUser.getUsername().equals(userName)) 
+						{
+							if (tempAppUser.getUserLevel().equals("A")) 
+							{
+								return "A";
+							}
+							else 
+							{
+								return "S";
+							}
+							
+							
+						}
+				}
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "A";
+	}
 	
+	public String checkUserType() 
+	{
+		for (AppUser appUser: appUsers) 
+		{
+			if (appUser.getUsername().equals(userName)) 
+			{
+				if (appUser.getUserLevel().equals("A")) 
+				{
+					return "A";
+				}
+				else 
+				{
+					this.appUser = appUser;
+					return "S";
+				}
+			}
+			
+		}
+		return "A";
+	}
+	
+	public ArrayList<Customer> updateUserCustomers(String userType, ArrayList<Customer> list)
+	{
+		ArrayList<Customer> tempArrayList = new ArrayList<Customer>();
+		
+		if (userType.equals("A")) 
+		{
+			return list;
+			
+		}
+		else 
+		{
+			try {
+				for (Customer customertemp: list) 
+				{
+					if(customertemp.getAppUser() != null) 
+					{
+						AppUser tempAppUser = customertemp.getAppUser();
+						
+							if (tempAppUser.getUsername().equals(userName)) 
+							{
+								tempArrayList.add(customertemp);
+							}
+					}
+					
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return tempArrayList;
+		
+	}
 	
 	
 	

@@ -63,6 +63,7 @@
                             <h:outputLabel id = "Id" >#{customerController.customer.customerId}</h:outputLabel>
                         </td>
                     </tr>
+							
                     <tr class="#{!customerName.valid ? 'has-error' : 'none'}">
                         <td width ="100" valign="top">Customer Name: </td>
 
@@ -78,24 +79,26 @@
                                          	class="#{!customerName.valid ? 'label label-warning' : 'none'}"/>
                         </td>
                     </tr>
-                    <tr class="#{!industryName.valid ? 'has-error' : 'none'}">
-                        <td width ="100" valign="top">
-                        	Industry Name: 
-                        </td>
-						<td valign="bottom">
-						<h:outputLabel for="IndustryName" />
-                            <h:inputText id ="IndustryName" value="#{customerController.customer.industry.industryName}" binding="#{industryName}" required="true"
-                                       requiredMessage="Please enter the industry name!"
-                                         pt:placeholder="#{customerController.customer.industry.industryName}">
-                                        
-                            </h:inputText>
-                                         <br/>
-                                         <h:message for="IndustryName"
-                                         	class="#{!industryName.valid ? 'label label-warning' : 'none'}"/>
+                    
+                    <tr>
+                        <td width ="150" valign="top">Industry:</td>
+                        <td valign="bottom">
+                            <h:outputLabel id = "IndustryName" >
+                            
+	                            <h:selectOneMenu value="#{customerController.customer.industry.industryName}" required="true">
+								   <f:selectItem itemValue="Bank" itemLabel="Bank" />
+								   <f:selectItem itemValue="Building" itemLabel="Building" />    
+								   <f:selectItem itemValue="Data Communication" itemLabel="Data Communication" /> 
+								   <f:selectItem itemValue="Education" itemLabel="Education" /> 
+								   <f:selectItem itemValue="Farm" itemLabel="Farm" /> 
+								   <f:selectItem itemValue="Health" itemLabel="Health" /> 
+								   <f:selectItem itemValue="Mining" itemLabel="Mining" /> 
+								   <f:selectItem itemValue="Publishing" itemLabel="Publishing" />                
+								</h:selectOneMenu>
+							
+							</h:outputLabel>
                         </td>
                     </tr>
-                    
-                    
                     
                     <tr class="#{!CEO.valid ? 'has-error' : 'none'}">
                         <td width ="100" valign="top">CEO: </td>
@@ -177,7 +180,7 @@
 
                         </td>
                     </tr>
-
+                    
                 </table>
 
                 <h:commandButton id="save" value="Save" action="#{customerManagedBean.editCustomer(customerController.customer)}"  class="btn btn-primary" >
